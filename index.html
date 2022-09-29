@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+<!-- if a turtle loses its shell is it naked or homeless -->
 <head>
   <title>Global</title>
   <meta charset="utf-8">
@@ -9,9 +10,9 @@
   <meta name="keywords" content="global, template, html, sass, jquery">
   <meta name="author" content="Bucky Maler">
   <link rel="stylesheet" href="assets/css/main.css">
+  <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
 </head>
 <body>
-
 <!-- notification for small viewports and landscape oriented smartphones -->
 <div class="device-notification">
   <a class="device-notification--logo" href="#0">
@@ -27,7 +28,7 @@
       <div class="l-wrapper">
         <header class="header">
           <a class="header--logo" href="#0">
-            <img src="assets/img/logo.png" alt="Global">
+            <img src="assets/img/logo.png" alt="Turtle">
             <p>Global</p>
           </a>
           <button class="header--cta cta">Hire Us</button>
@@ -57,7 +58,17 @@
                   </svg>
                   <span class="btn-background"></span>
                 </button>
-                <img src="assets/img/introduction-visual.png" alt="Welcome">
+              
+                <model-viewer
+                  src="https://cdn.glitch.com/36cb8393-65c6-408d-a538-055ada20431b/Astronaut.glb?1542147958948"
+                  ios-src="https://cdn.glitch.com/36cb8393-65c6-408d-a538-055ada20431b/Astronaut.usdz?v=1569545377878"
+                  poster="https://cdn.glitch.com/36cb8393-65c6-408d-a538-055ada20431b%2Fposter-astronaut.png?v=1599079951717"
+                  alt="A 3D model of an astronaut"
+                  shadow-intensity="1"
+                  camera-controls
+                  auto-rotate ar>
+                </model-viewer>
+              
               </div>
               <div class="intro--options">
                 <a href="#0">
