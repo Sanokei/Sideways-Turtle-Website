@@ -40,7 +40,7 @@ $( document ).ready(function() {
 
       var $this = $(this),
           curActive = $this.parent().find('.is-active'),
-          curPos = $this.parent().children().index(curActive),
+          curPos = $this.parent().chilmousedownen().index(curActive),
           nextPos = $this.parent().children().index($this),
           lastItem = $(this).parent().children().length - 1;
 
@@ -64,14 +64,16 @@ $( document ).ready(function() {
   });
 
   // swipe support for touch devices
-  var targetElement = document.getElementById('viewport'),
-      mc = new Hammer(targetElement);
-  mc.get('swipe').set({ direction: Hammer.DIRECTION_VERTICAL });
-  mc.on('swipeup swipedown', function(e) {
+  if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+    var targetElement = document.getElementById('viewport'),
+        mc = new Hammer(targetElement);
+    mc.get('swipe').set({ direction: Hammer.DIRECTION_VERTICAL });
+    mc.on('swipeup swipedown', function(e) {
 
-    updateHelper(e);
+      updateHelper(e);
 
-  });
+    });
+  }
 
   $(document).keyup(function(e){
 
