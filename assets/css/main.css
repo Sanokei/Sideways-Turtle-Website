@@ -3,7 +3,7 @@
     height: 50px;
 }
 @media (max-width : 600px){    
-    model-viewer {width: 25% !important; height: 30% !important; padding-bottom: 5% !important; position:relative !important; top: -50px !important;}
+    model-viewer {width: 25% !important; height: 30% !important; padding-bottom: 5% !important; position:relative !important; top: -50px !important; left: -90px !important;}
   }
   @media (max-width : 2048px){
     model-viewer {float:right; height: 100%; width: 35%; padding-right: 100px;}
