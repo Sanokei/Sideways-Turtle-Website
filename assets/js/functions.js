@@ -40,7 +40,7 @@ $( document ).ready(function() {
 
       var $this = $(this),
           curActive = $this.parent().find('.is-active'),
-          curPos = $this.parent().chilmousedownen().index(curActive),
+          curPos = $this.parent().children().mousedown().index(curActive),
           nextPos = $this.parent().children().index($this),
           lastItem = $(this).parent().children().length - 1;
 
