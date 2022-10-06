@@ -6,8 +6,8 @@ $( document ).ready(function() {
     container: 'map',
     // Choose from Mapbox's core styles, or make your own style with Mapbox Studio
     style: 'mapbox://styles/mapbox/dark-v10',
-    center: [-87.62712, 41.89033],
-    zoom: 15.5,
+    center: [-73.997457, 40.730823],
+    zoom: 15,
     pitch: 45
   });
     
@@ -19,7 +19,7 @@ $( document ).ready(function() {
   requestAnimationFrame(rotateCamera);
   }
     // parameters to ensure the model is georeferenced correctly on the map
-  const modelOrigin = [-87.62712, 41.89033];
+  const modelOrigin = [-73.997457, 40.730823];
   const modelAltitude = 0;
   const modelRotate = [Math.PI / 2, 0, 0];
   
@@ -50,75 +50,73 @@ $( document ).ready(function() {
     type: 'custom',
     renderingMode: '3d',
     onAdd: function (map, gl) {
-    this.camera = new THREE.Camera();
-    this.scene = new THREE.Scene();
-    
-    // create two three.js lights to illuminate the model
-    const directionalLight = new THREE.DirectionalLight(0xffffff);
-    directionalLight.position.set(0, -70, 100).normalize();
-    this.scene.add(directionalLight);
-    
-    const directionalLight2 = new THREE.DirectionalLight(0xffffff);
-    directionalLight2.position.set(0, 70, 100).normalize();
-    this.scene.add(directionalLight2);
-    
-    // use the three.js GLTF loader to add the 3D model to the three.js scene
-    const loader = new THREE.GLTFLoader();
-    loader.load(
-    'https://cdn.glitch.global/ff996a1b-fade-4b92-9204-556d38ecd023/Directions%20Sign%20Post.gltf?v=1665007172532',
-    (gltf) => {
-    this.scene.add(gltf.scene);
-    }
-    );
-    this.map = map;
-    
-    // use the Mapbox GL JS map canvas for three.js
-    this.renderer = new THREE.WebGLRenderer({
-    canvas: map.getCanvas(),
-    context: gl,
-    antialias: true
-    });
-    
-    this.renderer.autoClear = false;
-    },
-    render: function (gl, matrix) {
-    const rotationX = new THREE.Matrix4().makeRotationAxis(
-    new THREE.Vector3(1, 0, 0),
-    modelTransform.rotateX
-    );
-    const rotationY = new THREE.Matrix4().makeRotationAxis(
-    new THREE.Vector3(0, 1, 0),
-    modelTransform.rotateY
-    );
-    const rotationZ = new THREE.Matrix4().makeRotationAxis(
-    new THREE.Vector3(0, 0, 1),
-    modelTransform.rotateZ
-    );
-    
-    const m = new THREE.Matrix4().fromArray(matrix);
-    const l = new THREE.Matrix4()
-    .makeTranslation(
-    modelTransform.translateX,
-    modelTransform.translateY,
-    modelTransform.translateZ
-    )
-    .scale(
-    new THREE.Vector3(
-      modelTransform.scale.x,
-      -modelTransform.scale.y,
-      modelTransform.scale.z
-    )
-    )
-    .multiply(rotationX)
-    .multiply(rotationY)
-    .multiply(rotationZ);
-    l.scale.set(100,100,100);
-    this.camera.projectionMatrix = m.multiply(l);
-    this.renderer.resetState();
-    this.renderer.render(this.scene, this.camera);
-    this.map.triggerRepaint();
-    }
-  };
+      this.camera = new THREE.Camera();
+      this.scene = new THREE.Scene();
+      
+      // create two three.js lights to illuminate the model
+      const color = 0xFFFFFF;
+      const intensity = 100;
+      const light = new THREE.AmbientLight(color, intensity);
+      this.scene.add(light);
+      
+      // use the three.js GLTF loader to add the 3D model to the three.js scene
+      const loader = new THREE.GLTFLoader();
+      loader.load(
+        'https://cdn.glitch.global/ff996a1b-fade-4b92-9204-556d38ecd023/Turtle_Model.glb?v=1664519111621',
+        (gltf) => {
+          gltf.scene.scale.multiplyScalar(4);
+          this.scene.add(gltf.scene);
+        }
+      );
+
+      this.map = map;
+      
+      // use the Mapbox GL JS map canvas for three.js
+      this.renderer = new THREE.WebGLRenderer({
+        canvas: map.getCanvas(),
+        context: gl,
+        antialias: true
+      });
+      
+      this.renderer.autoClear = false;
+      },
+      render: function (gl, matrix) {
+      const rotationX = new THREE.Matrix4().makeRotationAxis(
+      new THREE.Vector3(1, 0, 0),
+      modelTransform.rotateX
+      );
+      const rotationY = new THREE.Matrix4().makeRotationAxis(
+      new THREE.Vector3(0, 1, 0),
+      modelTransform.rotateY
+      );
+      const rotationZ = new THREE.Matrix4().makeRotationAxis(
+      new THREE.Vector3(0, 0, 1),
+      modelTransform.rotateZ
+      );
+      
+      const m = new THREE.Matrix4().fromArray(matrix);
+      const l = new THREE.Matrix4()
+      .makeTranslation(
+      modelTransform.translateX,
+      modelTransform.translateY,
+      modelTransform.translateZ
+      )
+      .scale(
+      new THREE.Vector3(
+        modelTransform.scale,
+        -modelTransform.scale,
+        modelTransform.scale
+        )
+      )
+      .multiply(rotationX)
+      .multiply(rotationY)
+      .multiply(rotationZ);
+      this.camera.projectionMatrix = m.multiply(l);
+      this.renderer.resetState();
+      this.renderer.render(this.scene, this.camera);
+      this.map.triggerRepaint();
+      }
+    };
   
   map.on('style.load', () => {
     map.addLayer(customLayer, 'waterway-label');
@@ -143,7 +141,7 @@ $( document ).ready(function() {
     'source-layer': 'building',
     'filter': ['==', 'extrude', 'true'],
     'type': 'fill-extrusion',
-    'minzoom': 15,
+    'minzoom': 12,
     'paint': {
     'fill-extrusion-color': '#aaa',
       

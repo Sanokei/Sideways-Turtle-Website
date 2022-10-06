@@ -6,9 +6,9 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="description" content="HTML5 website template">
-  <meta name="keywords" content="global, template, html, sass, jquery">
-  <meta name="author" content="Bucky Maler">
+  <meta name="description" content="Offical Website for Sideways Turtle an indie game studio making entertaining experiences for all">
+  <meta name="keywords" content="sidewaysturtle, sideways turtle, sideways turtles studio, sideways turtle game studio, turtle studio, game studio, indie game, hackpunk">
+  <meta name="author" content="Original: Bucky Maler | Fork: SanoKei">
   <link rel="stylesheet" href="assets/css/main.css">
   <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no">
   <link href="https://api.mapbox.com/mapbox-gl-js/v2.10.0/mapbox-gl.css" rel="stylesheet">
@@ -16,9 +16,10 @@
   <script src="https://unpkg.com/three@0.126.0/build/three.min.js"></script>
   <script src="https://unpkg.com/three@0.126.0/examples/js/loaders/GLTFLoader.js"></script>
   <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
+  
 </head>
 <body>
-<!-- notification for small viewports and landscape oriented smartphones -->
+  <!-- notification for small viewports and landscape oriented smartphones -->
 <div class="device-notification">
   <a class="device-notification--logo" href="index.html">
     <img id="logo-img" src="assets/img/logo.png" alt="Logo">
@@ -26,7 +27,139 @@
   </a>
   <p class="device-notification--message">You found an easter egg! Well actually... Your device is unfortunetly not the right size to properly show the website ;-; It's more that our code is not great LMAO <strong>Please bring the website to fullscreen to enjoy the website it was intented</strong></p>
 </div>
+<script>
+  (function LoaderScreenScript(window = window, document = window.document, undefined = window.undefined || void 0) {
+    // Initialization > (Processing Time, Condition, Timeout, Loader (...))
+    let processingTime = 0,
+        condition = function() {
+            // Return
+            return document.body
+        },
+        timeout = function() {
+            // Return
+            return (processingTime * 1e3) / 2
+        },
+        loaderScreenFontSize = typeof window.loaderScreenFontSize != 'undefined' ? window.loaderScreenFontSize : 14,
+        loaderScreenMargin = typeof window.loaderScreenMargin != 'undefined' ? window.loaderScreenMargin : 10,
+        loaderScreenMessage = typeof window.loaderScreenMessage != 'undefined' ? window.loaderScreenMessage : 'Loading, please wait&hellip;',
+        loaderScreenOpacity = typeof window.loaderScreenOpacity != 'undefined' ? window.loaderScreenOpacity : .95,
+        loaderScreenTransition = typeof window.loaderScreenTransition != 'undefined' ? window.loaderScreenTransition : .675,
+        loaderScreenWidth = typeof window.loaderScreenWidth != 'undefined' ? window.loaderScreenWidth : 7.5;
 
+    // Function > Update
+    function update() {
+        // Set Timeout
+        setTimeout(function() {
+            // Initialization > (Data, Metadata)
+            var data = document.createElement('loader-screen-element'),
+                metadata = setInterval(function() {
+                    /* Logic
+                            [if:else if:else statement]
+                    */
+                    if (document.readyState == 'complete') {
+                        // Alpha
+                        alpha();
+
+                        // Test
+                        test()
+                    }
+                });
+
+            // Insertion
+            document.body.appendChild(data);
+
+            // Style > <body> > Overflow
+            document.body.style = ('overflow: hidden !important; pointer-events: none !important; user-drag: none !important; user-select: none !important;' + (document.body.getAttribute('style') || ' ')).trim();
+
+            // Modification > Data
+                // Inner HTML
+                data.innerHTML =
+                    '<style media=all type=text/css>' +
+                        'body::selection {' +
+                            'background-color: transparent !important;' +
+                            'text-shadow: none !important' +
+                        '} ' +
+                        '@keyframes rotate {' +
+                            '0% { transform: rotate(0) }' +
+                            'to { transform: rotate(360deg) }' +
+                        '}' +
+                    '</style>' +
+                    "<div style='animation: rotate 1s ease-in-out 0s infinite backwards; border: " + loaderScreenWidth + "px solid rgba(255, 255, 255, " + loaderScreenOpacity + "); border-top-color: rgba(0, 51, 255, " + loaderScreenOpacity + "); border-radius: 50%; height: 75px; margin: 0 auto; margin-bottom: " + loaderScreenMargin + "px; width: 75px'> </div>" +
+                    "<small style='color: rgba(127, 127, 127, .675); font-family: \"Open Sans\", \"Calibri Light\", Calibri, sans-serif; font-size: " + loaderScreenFontSize + "px !important; margin: 0 auto; margin-top: " + loaderScreenMargin + "px; text-align: center'> " + loaderScreenMessage + " </small>";
+
+                // Style
+                data.style = 'align-items: center; background-color: rgba(0, 0, 0, .98); display: flex; flex-direction: column; height: ' + innerHeight + 'px; justify-content: center; left: 0; margin: auto; max-height: 100% !important; max-width: 100% !important; min-height: 100vh; min-width: 100vh; position: fixed; top: 0; transition: ' + loaderScreenTransition + 's ease-in-out; width: ' + innerWidth + 'px; z-index: 2147483647';
+
+            // Function
+                // Alpha
+                function alpha() {
+                    // Clear Interval
+                    clearInterval(metadata)
+                };
+
+                // Test
+                function test() {
+                    // Style > Data
+                        // Background Color
+                        data.style.backgroundColor = 'transparent';
+
+                        // Opacity
+                        data.style.opacity = 0;
+
+                    // Set Timeout
+                    setTimeout(function() {
+                        // Deletion
+                        data.remove();
+
+                        // Modification > <body> > Style
+                        document.body.style = document.body.getAttribute('style').replace('overflow: hidden !important;', '').replace('pointer-events: none !important;', '').replace('user-drag: none !important;', '').replace('user-select: none !important;', '');
+                        (document.body.getAttribute('style') || '').trim() || document.body.removeAttribute('style')
+                    }, ((+getComputedStyle(data).getPropertyValue('animation-delay').replace(/[a-zA-Z]/g, '').trim() + +getComputedStyle(data).getPropertyValue('animation-duration').replace(/[a-zA-Z]/g, '').trim() + +getComputedStyle(data).getPropertyValue('transition-delay').replace(/[a-zA-Z]/g, '').trim() + +getComputedStyle(data).getPropertyValue('transition-duration').replace(/[a-zA-Z]/g, '').trim()) * 1e3) + 100);
+                }
+        }, timeout())
+    };
+
+    /* Logic
+            [if:else if:else statement]
+    */
+    if (condition())
+        // Update
+        update();
+
+    else {
+        // Initialization > Data
+        var data = setInterval(function() {
+            /* Logic
+                    [if:else if:else statement]
+            */
+            if (condition()) {
+                // Update > Processing Time
+                processingTime += 1;
+
+                // Update
+                update();
+
+                // Metadata
+                metadata()
+            }
+        });
+
+        // Function > Metadata
+        function metadata() {
+            // Clear Interval
+            clearInterval(data);
+
+            /* Logic
+                    [if:else if:else statement]
+
+                > Deletion
+            */
+            if ('data' in window && typeof data == 'undefined')
+                delete window.data
+        }
+    }
+})(window, window.document, window.undefined || void 0)
+</script>
 <div class="perspective effect-rotate-left">
   <div class="container"><div class="outer-nav--return"></div>
     <div id="viewport" class="l-viewport">
@@ -110,10 +243,10 @@
                   <li class="slider--item slider--item-left">
                     <a href="#0">
                       <div class="slider--item-image">
-                        <img src="assets/img/work-victory.jpg" alt="Victory">
+                        <img src="assets/img/work-victory.jpg" alt="Cumulonimbus">
                       </div>
-                      <p class="slider--item-title">Victory</p>
-                      <p class="slider--item-description">Lorem ipsum dolor sit amet, consectetur adipisicing elit sed do.</p>
+                      <p class="slider--item-title">Cumulonimbus</p>
+                      <p class="slider--item-description">A game about being a cloud on the path to helping those around it floating through life.</p>
                     </a>
                   </li>
                   <li class="slider--item slider--item-center">
@@ -128,10 +261,10 @@
                   <li class="slider--item slider--item-right">
                     <a href="#0">
                       <div class="slider--item-image">
-                        <img src="assets/img/work-alex-nowak.jpg" alt="Alex Nowak">
+                        <img src="assets/img/work-alex-nowak.jpg" alt="Object Limbo">
                       </div>
-                      <p class="slider--item-title">Alex Nowak</p>
-                      <p class="slider--item-description">Lorem ipsum dolor sit amet, consectetur adipisicing elit sed do.</p>
+                      <p class="slider--item-title">Object Limbo</p>
+                      <p class="slider--item-description">Story driven experience about morality and choosing to banish objects for their previous lives as objects interacting with humans.</p>
                     </a>
                   </li>
                 </ul>
@@ -191,6 +324,7 @@
               <div class="contact--lockup">
                 <div class="modal">
                   <div class="modal--information">
+                    <strong>Proudly Based in NYC</strong>
                     <a href="mailto:contact@sidewaystutle.com">contact@sidewaysturtle.com</a>
                   </div>
                   <ul class="modal--options">
