@@ -228,7 +228,8 @@ $( document ).ready(function() {
 
   });
 
-  $('.next-tele').click(function(){
+  $('.next-tele, .prev-tele, .curr-tele').click(function(){
+    var $this = $(this);
     var curActive = $('.side-nav').find('.is-active'),
     curPos = $('.side-nav').children().index(curActive);
 
@@ -238,60 +239,31 @@ $( document ).ready(function() {
           $left = $('.slider--item-left'),
           $center = $('.slider--item-center'),
           $right = $('.slider--item-right');
-
+    
+    
     $left.removeClass('slider--item-left');
-    $left_perm.addClass('slider--item-right');
     $center.removeClass('slider--item-center');
-    $center_perm.addClass('slider--item-left')
     $right.removeClass('slider--item-right');
-    $right_perm.addClass('slider--item-center');
 
-    updateNavs(2);
-    updateContent(curPos, 1, 2);
-  });
-  
-  $('.prev-tele').click(function(){
-    var curActive = $('.side-nav').find('.is-active'),
-    curPos = $('.side-nav').children().index(curActive);
+    if($this.hasClass('next-tele')){
+      $left_perm.addClass('slider--item-right');
+      $center_perm.addClass('slider--item-left');
+      $right_perm.addClass('slider--item-center');
+    }
+    else if($this.hasClass('prev-tele')){
+      $left_perm.addClass('slider--item-center');
+      $center_perm.addClass('slider--item-left')
+      $right_perm.addClass('slider--item-right');
+    }
+    else
+    {
+      $left_perm.addClass('slider--item-left');
+      $center_perm.addClass('slider--item-center');
+      $right_perm.addClass('slider--item-right');
+    }
 
-    var   $left_perm = $('.slider--perm-left'),
-          $center_perm = $('.slider--perm-center'),
-          $right_perm = $('.slider--perm-right'),
-          $left = $('.slider--item-left'),
-          $center = $('.slider--item-center'),
-          $right = $('.slider--item-right');
-
-    $left.removeClass('slider--item-left');
-    $left_perm.addClass('slider--item-center');
-    $center.removeClass('slider--item-center');
-    $center_perm.addClass('slider--item-left')
-    $right.removeClass('slider--item-right');
-    $right_perm.addClass('slider--item-right');
-
-    updateNavs(2);
-    updateContent(curPos, 1, 2);
-  });
-
-  $('.curr-tele').click(function(){
-    var curActive = $('.side-nav').find('.is-active'),
-        curPos = $('.side-nav').children().index(curActive);
-
-    var   $left_perm = $('.slider--perm-left'),
-          $center_perm = $('.slider--perm-center'),
-          $right_perm = $('.slider--perm-right'),
-          $left = $('.slider--item-left'),
-          $center = $('.slider--item-center'),
-          $right = $('.slider--item-right');
-
-          $left.removeClass('slider--item-left');
-          $left_perm.addClass('slider--item-left');
-          $center.removeClass('slider--item-center');
-          $center_perm.addClass('slider--item-center')
-          $right.removeClass('slider--item-right');
-          $right_perm.addClass('slider--item-right');
-      
-    updateNavs(2);
-    updateContent(curPos, 1, 2);
+    updateNavs(lastItem);
+    updateContent(curPos, nextPos, lastItem);
   });
 
   $('.cta').click(function(){
