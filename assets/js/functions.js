@@ -1,5 +1,14 @@
 // @codekit-prepend "/vendor/hammer-2.0.8.js";
 
+document.getElementById("overlay").addEventListener("contextmenu", function(event){
+  event.preventDefault();
+  event.stopPropagation();
+});
+// https://stackoverflow.com/questions/5786851/define-a-global-variable-in-a-javascript-function
+// var     left = $('.slider--item-left'),
+//           $center = $('.slider--item-center'),
+//           $right = $('.slider--item-right');
+
 $( document ).ready(function() {
   mapboxgl.accessToken = 'pk.eyJ1Ijoic2Fub2tlaSIsImEiOiJjbDh3M2RsNzkwanZqM29vNDduNW52amg5In0.SSwVPJSPg5z-BNhYIufsJQ';
   const map = new mapboxgl.Map({
@@ -7,16 +16,17 @@ $( document ).ready(function() {
     // Choose from Mapbox's core styles, or make your own style with Mapbox Studio
     style: 'mapbox://styles/mapbox/dark-v10',
     center: [-73.997457, 40.730823],
-    zoom: 15,
+    zoom: 16,
+    interactive: false,
     pitch: 45
   });
     
   function rotateCamera(timestamp) {
-  // clamp the rotation between 0 -360 degrees
-  // Divide timestamp by 100 to slow rotation to ~10 degrees / sec
-  map.rotateTo((timestamp / 100) % 360, { duration: 0 });
-  // Request the next frame of the animation.
-  requestAnimationFrame(rotateCamera);
+    // clamp the rotation between 0 -360 degrees
+    // Divide timestamp by 100 to slow rotation to ~10 degrees / sec
+    map.rotateTo((timestamp / 100) % 360, { duration: 0 });
+    // Request the next frame of the animation.
+    requestAnimationFrame(rotateCamera);
   }
     // parameters to ensure the model is georeferenced correctly on the map
   const modelOrigin = [-73.997457, 40.730823];
@@ -64,7 +74,7 @@ $( document ).ready(function() {
       loader.load(
         'https://cdn.glitch.global/ff996a1b-fade-4b92-9204-556d38ecd023/Turtle_Model.glb?v=1664519111621',
         (gltf) => {
-          gltf.scene.scale.multiplyScalar(4);
+          gltf.scene.scale.multiplyScalar(1.5);
           this.scene.add(gltf.scene);
         }
       );
@@ -127,13 +137,13 @@ $( document ).ready(function() {
     rotateCamera(0);
       
     // Add 3D buildings and remove label layers to enhance the map
-    const layers = map.getStyle().layers;
-    for (const layer of layers) {
-      if (layer.type === 'symbol' && layer.layout['text-field']) {
-        // remove text labels
-        map.removeLayer(layer.id);
-        }
-  }
+    // const layers = map.getStyle().layers;
+    // for (const layer of layers) {
+    //   if (layer.type === 'symbol' && layer.layout['text-field']) {
+    //     // remove text labels
+    //     map.removeLayer(layer.id);
+    //     }
+    // }
     
     map.addLayer({
     'id': '3d-buildings',
@@ -141,7 +151,7 @@ $( document ).ready(function() {
     'source-layer': 'building',
     'filter': ['==', 'extrude', 'true'],
     'type': 'fill-extrusion',
-    'minzoom': 12,
+    'minzoom': 15,
     'paint': {
     'fill-extrusion-color': '#aaa',
       
@@ -217,106 +227,71 @@ $( document ).ready(function() {
     }
 
   });
-  
+
   $('.next-tele').click(function(){
     var curActive = $('.side-nav').find('.is-active'),
-    curPos = $('.side-nav').children().index(curActive),
-    lastItem = $('.side-nav').children().length - 4,
-    nextPos = lastItem;
+    curPos = $('.side-nav').children().index(curActive);
 
-    updateNavs(lastItem);
-    updateContent(curPos, nextPos, lastItem);
-    var $this = $(this),
-          curLeft = $('.slider').find('.slider--item-left'),
-          curLeftPos = $('.slider').children().index(curLeft),
-          curCenter = $('.slider').find('.slider--item-center'),
-          curCenterPos = $('.slider').children().index(curCenter),
-          curRight = $('.slider').find('.slider--item-right'),
-          curRightPos = $('.slider').children().index(curRight),
-          totalWorks = $('.slider').children().length,
+    var   $left_perm = $('.slider--perm-left'),
+          $center_perm = $('.slider--perm-center'),
+          $right_perm = $('.slider--perm-right'),
           $left = $('.slider--item-left'),
           $center = $('.slider--item-center'),
-          $right = $('.slider--item-right'),
-          $item = $('.slider--item');
-    if (curLeftPos < totalWorks - 1 && curCenterPos < totalWorks - 1 && curRightPos < totalWorks - 1) {
-      $left.removeClass('slider--item-left').next().addClass('slider--item-left');
-      $center.removeClass('slider--item-center').next().addClass('slider--item-center');
-      $right.removeClass('slider--item-right').next().addClass('slider--item-right');
-    }
-    else {
-      if (curLeftPos === totalWorks - 1) {
-        $item.removeClass('slider--item-left').first().addClass('slider--item-left');
-        $center.removeClass('slider--item-center').next().addClass('slider--item-center');
-        $right.removeClass('slider--item-right').next().addClass('slider--item-right');
-      }
-      else if (curCenterPos === totalWorks - 1) {
-        $left.removeClass('slider--item-left').next().addClass('slider--item-left');
-        $item.removeClass('slider--item-center').first().addClass('slider--item-center');
-        $right.removeClass('slider--item-right').next().addClass('slider--item-right');
-      }
-      else {
-        $left.removeClass('slider--item-left').next().addClass('slider--item-left');
-        $center.removeClass('slider--item-center').next().addClass('slider--item-center');
-        $item.removeClass('slider--item-right').first().addClass('slider--item-right');
-      }
-    }
+          $right = $('.slider--item-right');
+
+    $left.removeClass('slider--item-left');
+    $left_perm.addClass('slider--item-right');
+    $center.removeClass('slider--item-center');
+    $center_perm.addClass('slider--item-left')
+    $right.removeClass('slider--item-right');
+    $right_perm.addClass('slider--item-center');
+
+    updateNavs(2);
+    updateContent(curPos, 1, 2);
   });
   
   $('.prev-tele').click(function(){
     var curActive = $('.side-nav').find('.is-active'),
-    curPos = $('.side-nav').children().index(curActive),
-    lastItem = $('.side-nav').children().length - 4,
-    nextPos = lastItem;
+    curPos = $('.side-nav').children().index(curActive);
 
-    updateNavs(lastItem);
-    updateContent(curPos, nextPos, lastItem);
-
-    var $this = $(this),
-          curLeft = $('.slider').find('.slider--item-left'),
-          curLeftPos = $('.slider').children().index(curLeft),
-          curCenter = $('.slider').find('.slider--item-center'),
-          curCenterPos = $('.slider').children().index(curCenter),
-          curRight = $('.slider').find('.slider--item-right'),
-          curRightPos = $('.slider').children().index(curRight),
-          totalWorks = $('.slider').children().length,
+    var   $left_perm = $('.slider--perm-left'),
+          $center_perm = $('.slider--perm-center'),
+          $right_perm = $('.slider--perm-right'),
           $left = $('.slider--item-left'),
           $center = $('.slider--item-center'),
-          $right = $('.slider--item-right'),
-          $item = $('.slider--item');
-    if (curLeftPos !== 0 && curCenterPos !== 0 && curRightPos !== 0) {
-      $left.removeClass('slider--item-left').prev().addClass('slider--item-left');
-      $center.removeClass('slider--item-center').prev().addClass('slider--item-center');
-      $right.removeClass('slider--item-right').prev().addClass('slider--item-right');
-    }
-    else {
-      if (curLeftPos === 0) {
-        $item.removeClass('slider--item-left').last().addClass('slider--item-left');
-        $center.removeClass('slider--item-center').prev().addClass('slider--item-center');
-        $right.removeClass('slider--item-right').prev().addClass('slider--item-right');
-      }
-      else if (curCenterPos === 0) {
-        $left.removeClass('slider--item-left').prev().addClass('slider--item-left');
-        $item.removeClass('slider--item-center').last().addClass('slider--item-center');
-        $right.removeClass('slider--item-right').prev().addClass('slider--item-right');
-      }
-      else {
-        $left.removeClass('slider--item-left').prev().addClass('slider--item-left');
-        $center.removeClass('slider--item-center').prev().addClass('slider--item-center');
-        $item.removeClass('slider--item-right').last().addClass('slider--item-right');
-      }
-    }
+          $right = $('.slider--item-right');
+
+    $left.removeClass('slider--item-left');
+    $left_perm.addClass('slider--item-center');
+    $center.removeClass('slider--item-center');
+    $center_perm.addClass('slider--item-left')
+    $right.removeClass('slider--item-right');
+    $right_perm.addClass('slider--item-right');
+
+    updateNavs(2);
+    updateContent(curPos, 1, 2);
   });
 
-  $('.tele').click(function(){
-
+  $('.curr-tele').click(function(){
     var curActive = $('.side-nav').find('.is-active'),
-        curPos = $('.side-nav').children().index(curActive),
-        lastItem = $('.side-nav').children().length - 4,
-        nextPos = lastItem;
+        curPos = $('.side-nav').children().index(curActive);
 
-    updateNavs(lastItem);
-    updateContent(curPos, nextPos, lastItem);
+    var   $left_perm = $('.slider--perm-left'),
+          $center_perm = $('.slider--perm-center'),
+          $right_perm = $('.slider--perm-right'),
+          $left = $('.slider--item-left'),
+          $center = $('.slider--item-center'),
+          $right = $('.slider--item-right');
 
+          $left.removeClass('slider--item-left');
+          $left_perm.addClass('slider--item-left');
+          $center.removeClass('slider--item-center');
+          $center_perm.addClass('slider--item-center')
+          $right.removeClass('slider--item-right');
+          $right_perm.addClass('slider--item-right');
+      
+    updateNavs(2);
+    updateContent(curPos, 1, 2);
   });
 
   $('.cta').click(function(){
@@ -330,7 +305,15 @@ $( document ).ready(function() {
     updateContent(curPos, nextPos, lastItem);
 
   });
+  $('.homepage-main').click(function(){
 
+    var curActive = $('.side-nav').find('.is-active'),
+        curPos = $('.side-nav').children().index(curActive);
+
+    updateNavs(0);
+    updateContent(curPos, 0, 0);
+
+  });
   // swipe support for touch devices
   if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
     var targetElement = document.getElementById('viewport'),

@@ -19,436 +19,326 @@
   
 </head>
 <body>
+  <!-- loading screen -->
+  <script src="assets/js/loading.js"></script>
+
   <!-- notification for small viewports and landscape oriented smartphones -->
-<div class="device-notification">
-  <a class="device-notification--logo" href="index.html">
-    <img id="logo-img" src="assets/img/logo.png" alt="Logo">
-    <p>Sideways Turtle</p>
-  </a>
-  <p class="device-notification--message">You found an easter egg! Well actually... Your device is unfortunetly not the right size to properly show the website ;-; It's more that our code is not great LMAO <strong>Please bring the website to fullscreen to enjoy the website it was intented</strong></p>
-</div>
-<script>
-  (function LoaderScreenScript(window = window, document = window.document, undefined = window.undefined || void 0) {
-    // Initialization > (Processing Time, Condition, Timeout, Loader (...))
-    let processingTime = 0,
-        condition = function() {
-            // Return
-            return document.body
-        },
-        timeout = function() {
-            // Return
-            return (processingTime * 1e3) / 2
-        },
-        loaderScreenFontSize = typeof window.loaderScreenFontSize != 'undefined' ? window.loaderScreenFontSize : 14,
-        loaderScreenMargin = typeof window.loaderScreenMargin != 'undefined' ? window.loaderScreenMargin : 10,
-        loaderScreenMessage = typeof window.loaderScreenMessage != 'undefined' ? window.loaderScreenMessage : 'Loading, please wait&hellip;',
-        loaderScreenOpacity = typeof window.loaderScreenOpacity != 'undefined' ? window.loaderScreenOpacity : .95,
-        loaderScreenTransition = typeof window.loaderScreenTransition != 'undefined' ? window.loaderScreenTransition : .675,
-        loaderScreenWidth = typeof window.loaderScreenWidth != 'undefined' ? window.loaderScreenWidth : 7.5;
+  <div class="device-notification">
+    <div class="device-notification--logo homepage-main">
+      <img id="logo-img" src="assets/img/logo.png" alt="Logo">
+      <p>Sideways Turtle</p>
+    </div>
+    <p class="device-notification--message">You found an easter egg! Well actually... Your device is unfortunetly not the right size to properly show the website ;-; <strong>Please bring the website to fullscreen to enjoy the website it was intented</strong></p>
+  </div>
 
-    // Function > Update
-    function update() {
-        // Set Timeout
-        setTimeout(function() {
-            // Initialization > (Data, Metadata)
-            var data = document.createElement('loader-screen-element'),
-                metadata = setInterval(function() {
-                    /* Logic
-                            [if:else if:else statement]
-                    */
-                    if (document.readyState == 'complete') {
-                        // Alpha
-                        alpha();
-
-                        // Test
-                        test()
-                    }
-                });
-
-            // Insertion
-            document.body.appendChild(data);
-
-            // Style > <body> > Overflow
-            document.body.style = ('overflow: hidden !important; pointer-events: none !important; user-drag: none !important; user-select: none !important;' + (document.body.getAttribute('style') || ' ')).trim();
-
-            // Modification > Data
-                // Inner HTML
-                data.innerHTML =
-                    '<style media=all type=text/css>' +
-                        'body::selection {' +
-                            'background-color: transparent !important;' +
-                            'text-shadow: none !important' +
-                        '} ' +
-                        '@keyframes rotate {' +
-                            '0% { transform: rotate(0) }' +
-                            'to { transform: rotate(360deg) }' +
-                        '}' +
-                    '</style>' +
-                    "<div style='animation: rotate 1s ease-in-out 0s infinite backwards; border: " + loaderScreenWidth + "px solid rgba(255, 255, 255, " + loaderScreenOpacity + "); border-top-color: rgba(0, 51, 255, " + loaderScreenOpacity + "); border-radius: 50%; height: 75px; margin: 0 auto; margin-bottom: " + loaderScreenMargin + "px; width: 75px'> </div>" +
-                    "<small style='color: rgba(127, 127, 127, .675); font-family: \"Open Sans\", \"Calibri Light\", Calibri, sans-serif; font-size: " + loaderScreenFontSize + "px !important; margin: 0 auto; margin-top: " + loaderScreenMargin + "px; text-align: center'> " + loaderScreenMessage + " </small>";
-
-                // Style
-                data.style = 'align-items: center; background-color: rgba(0, 0, 0, .98); display: flex; flex-direction: column; height: ' + innerHeight + 'px; justify-content: center; left: 0; margin: auto; max-height: 100% !important; max-width: 100% !important; min-height: 100vh; min-width: 100vh; position: fixed; top: 0; transition: ' + loaderScreenTransition + 's ease-in-out; width: ' + innerWidth + 'px; z-index: 2147483647';
-
-            // Function
-                // Alpha
-                function alpha() {
-                    // Clear Interval
-                    clearInterval(metadata)
-                };
-
-                // Test
-                function test() {
-                    // Style > Data
-                        // Background Color
-                        data.style.backgroundColor = 'transparent';
-
-                        // Opacity
-                        data.style.opacity = 0;
-
-                    // Set Timeout
-                    setTimeout(function() {
-                        // Deletion
-                        data.remove();
-
-                        // Modification > <body> > Style
-                        document.body.style = document.body.getAttribute('style').replace('overflow: hidden !important;', '').replace('pointer-events: none !important;', '').replace('user-drag: none !important;', '').replace('user-select: none !important;', '');
-                        (document.body.getAttribute('style') || '').trim() || document.body.removeAttribute('style')
-                    }, ((+getComputedStyle(data).getPropertyValue('animation-delay').replace(/[a-zA-Z]/g, '').trim() + +getComputedStyle(data).getPropertyValue('animation-duration').replace(/[a-zA-Z]/g, '').trim() + +getComputedStyle(data).getPropertyValue('transition-delay').replace(/[a-zA-Z]/g, '').trim() + +getComputedStyle(data).getPropertyValue('transition-duration').replace(/[a-zA-Z]/g, '').trim()) * 1e3) + 100);
-                }
-        }, timeout())
-    };
-
-    /* Logic
-            [if:else if:else statement]
-    */
-    if (condition())
-        // Update
-        update();
-
-    else {
-        // Initialization > Data
-        var data = setInterval(function() {
-            /* Logic
-                    [if:else if:else statement]
-            */
-            if (condition()) {
-                // Update > Processing Time
-                processingTime += 1;
-
-                // Update
-                update();
-
-                // Metadata
-                metadata()
-            }
-        });
-
-        // Function > Metadata
-        function metadata() {
-            // Clear Interval
-            clearInterval(data);
-
-            /* Logic
-                    [if:else if:else statement]
-
-                > Deletion
-            */
-            if ('data' in window && typeof data == 'undefined')
-                delete window.data
-        }
-    }
-})(window, window.document, window.undefined || void 0)
-</script>
-<div class="perspective effect-rotate-left">
-  <div class="container"><div class="outer-nav--return"></div>
-    <div id="viewport" class="l-viewport">
-      <div class="l-wrapper">
-        <header class="header">
-          <a class="header--logo" href="index.html">
-            <img id="logo-img" src="assets/img/logo.png" alt="Turtle">
-            <p>Sideways Turtle</p>
-          </a>
-          <button class="header--cta cta">Careers</button>
-          <div class="header--nav-toggle">
-            <span></span>
-          </div>
-        </header>
-        <nav class="l-side-nav">
-          <ul class="side-nav">
-            <li class="is-active"><span>Home</span></li>
-            <li><span>Experiences</span></li>
-            <li><span>About</span></li>
-            <li><span>Contact</span></li>
-            <li><span>Careers</span></li>
-          </ul>
-        </nav>
-        <ul class="l-main-content main-content">
-          <li class="l-section section section--is-active">
-            <div class="intro">
-              <div class="intro--banner wrapper">
-
-                <div style="float:left">
-                  <h1>We make<br>lasting<br>experiences</h1>
-                  <button class="cta">Careers
-                    <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 150 118" style="enable-background:new 0 0 150 118;" xml:space="preserve">
-                    <g transform="translate(0.000000,118.000000) scale(0.100000,-0.100000)">
-                      <path d="M870,1167c-34-17-55-57-46-90c3-15,81-100,194-211l187-185l-565-1c-431,0-571-3-590-13c-55-28-64-94-18-137c21-20,33-20,597-20h575l-192-193C800,103,794,94,849,39c20-20,39-29,61-29c28,0,63,30,298,262c147,144,272,271,279,282c30,51,23,60-219,304C947,1180,926,1196,870,1167z"/>
-                    </g>
-                    </svg>
-                    <span class="btn-background"></span>
-                  </button>
-                </div>
-                <!-- Would like to thank Riley for the turtle model -->
-                <!-- https://rkuhlf-assets.itch.io/aquatic-animal-models -->
-                <model-viewer
-                  src="https://cdn.glitch.global/ff996a1b-fade-4b92-9204-556d38ecd023/Turtle_Model.glb?v=1664519111621"
-                  ios-src="https://cdn.glitch.global/ff996a1b-fade-4b92-9204-556d38ecd023/Turtle_Model.usdz?v=1664519679394"
-                  alt="Imagine a 3D model of a cute turtle"
-                  shadow-intensity="5"
-                  camera-controls
-                  touch-action="pan-y"
-                  interaction-prompt="none"
-                  auto-rotate
-                  auto-rotate-delay="0"
-                  rotation-per-second="30deg"
-                  disable-tap
-                  disable-zoom
-                  orientation="-90deg -130deg 0"
-                >
-                </model-viewer>
-              
-              </div>
-                <div class="intro--options">
-                  <a class="tele">
-                    <h3>Hackpunk</h3>
-                    <p>A soviet era hacking game about puzzle solving and breaking into secure areas by exploting IOT devices.</p>
-                  </a>
-                  <a class="prev-tele">
-                    <h3>Cumulonimbus</h3>
-                    <p>A game about being a cloud on the path to helping those around it floating through life</p>
-                  </a>
-                  <a class="next-tele">
-                    <h3>Object Limbo</h3>
-                    <p>Story driven experience about morality and choosing to banish objects for their previous lives as objects interacting with humans.</p>
-                  </a>
-                </div>
+  <!-- Main -->
+  <div class="perspective effect-rotate-left">
+    <div class="container"><div class="outer-nav--return"></div>
+      <div id="viewport" class="l-viewport">
+        <div class="l-wrapper">
+          <header class="header">
+            <div class="header--logo homepage-main">
+              <img id="logo-img" src="assets/img/logo.png" alt="Turtle">
+              <p>Sideways Turtle</p>
             </div>
-          </li>
-          <li class="l-section section">
-            <div class="work">
-              <h2>Selected work</h2>
-              <div class="work--lockup">
-                <ul class="slider">
-                  <li class="slider--item slider--item-left">
-                    <a href="#0">
-                      <div class="slider--item-image">
-                        <img src="assets/img/work-victory.jpg" alt="Cumulonimbus">
-                      </div>
-                      <p class="slider--item-title">Cumulonimbus</p>
-                      <p class="slider--item-description">A game about being a cloud on the path to helping those around it floating through life.</p>
-                    </a>
-                  </li>
-                  <li class="slider--item slider--item-center">
-                    <a href="#0">
-                      <div class="slider--item-image">
-                        <img src="assets/img/HackpunkLogo.png" alt="Hackpunk">
-                      </div>
-                      <p class="slider--item-title">Hackpunk</p>
-                      <p class="slider--item-description">A soviet era hacking game about puzzle solving and breaking into secure areas by exploting IOT devices.</p>
-                    </a>
-                  </li>
-                  <li class="slider--item slider--item-right">
-                    <a href="#0">
-                      <div class="slider--item-image">
-                        <img src="assets/img/work-alex-nowak.jpg" alt="Object Limbo">
-                      </div>
-                      <p class="slider--item-title">Object Limbo</p>
-                      <p class="slider--item-description">Story driven experience about morality and choosing to banish objects for their previous lives as objects interacting with humans.</p>
-                    </a>
-                  </li>
-                </ul>
-                <div class="slider--prev">
-                  <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-                  viewBox="0 0 150 118" style="enable-background:new 0 0 150 118;" xml:space="preserve">
-                  <g transform="translate(0.000000,118.000000) scale(0.100000,-0.100000)">
-                    <path d="M561,1169C525,1155,10,640,3,612c-3-13,1-36,8-52c8-15,134-145,281-289C527,41,562,10,590,10c22,0,41,9,61,29
-                    c55,55,49,64-163,278L296,510h575c564,0,576,0,597,20c46,43,37,109-18,137c-19,10-159,13-590,13l-565,1l182,180
-                    c101,99,187,188,193,199c16,30,12,57-12,84C631,1174,595,1183,561,1169z"/>
-                  </g>
-                  </svg>
-                </div>
-                <div class="slider--next">
-                  <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 150 118" style="enable-background:new 0 0 150 118;" xml:space="preserve">
-                  <g transform="translate(0.000000,118.000000) scale(0.100000,-0.100000)">
-                    <path d="M870,1167c-34-17-55-57-46-90c3-15,81-100,194-211l187-185l-565-1c-431,0-571-3-590-13c-55-28-64-94-18-137c21-20,33-20,597-20h575l-192-193C800,103,794,94,849,39c20-20,39-29,61-29c28,0,63,30,298,262c147,144,272,271,279,282c30,51,23,60-219,304C947,1180,926,1196,870,1167z"/>
-                  </g>
-                  </svg>
-                </div>
-              </div>
+            <button class="header--cta cta">Careers</button>
+            <div class="header--nav-toggle">
+              <span></span>
             </div>
-          </li>
-          <li class="l-section section">
-            <div class="about">
-              <div class="about--banner">
-                <h2>We<br>believe in<br>passionate<br>people</h2>
-                <a class = "cta">Career
-                  <span>
-                    <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 150 118" style="enable-background:new 0 0 150 118;" xml:space="preserve">
-                    <g transform="translate(0.000000,118.000000) scale(0.100000,-0.100000)">
-                      <path d="M870,1167c-34-17-55-57-46-90c3-15,81-100,194-211l187-185l-565-1c-431,0-571-3-590-13c-55-28-64-94-18-137c21-20,33-20,597-20h575l-192-193C800,103,794,94,849,39c20-20,39-29,61-29c28,0,63,30,298,262c147,144,272,271,279,282c30,51,23,60-219,304C947,1180,926,1196,870,1167z"/>
-                    </g>
-                    </svg>
-                  </span>
-                </a>
-                <img src="assets/img/about-visual.png" alt="About Us">
-              </div>
-              <div class="about--options">
-                <a href="#0">
-                  <h3>Winners</h3>
-                </a>
-                <a href="#0">
-                  <h3>Philosophy</h3>
-                </a>
-                <a href="#0">
-                  <h3>History</h3>
-                </a>
-              </div>
-            </div>
-          </li>
-          <li class="l-section section">
-            <div class="contact">
-              <!-- Thanks to Jack Griffith for the Direction Sign Posts model -->
-              <!-- www.twitter.com/jackdotgriff -->
-              <div id="map"></div>
-              <div class="contact--lockup">
-                <div class="modal">
-                  <div class="modal--information">
-                    <strong>Proudly Based in NYC</strong>
-                    <a href="mailto:contact@sidewaystutle.com">contact@sidewaysturtle.com</a>
+          </header>
+          <nav class="l-side-nav">
+            <ul class="side-nav">
+              <li class="is-active"><span>Home</span></li>
+              <li><span>Experiences</span></li>
+              <li><span>About</span></li>
+              <li><span>Contact</span></li>
+              <li><span>Careers</span></li>
+            </ul>
+          </nav>
+          <ul class="l-main-content main-content">
+            <li class="l-section section section--is-active">
+              <div class="intro">
+                <div class="intro--banner wrapper">
+
+                  <div style="float:left">
+                    <h1>We make<br>lasting<br>experiences</h1>
+                    <button class="cta">Careers
+                      <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 150 118" style="enable-background:new 0 0 150 118;" xml:space="preserve">
+                      <g transform="translate(0.000000,118.000000) scale(0.100000,-0.100000)">
+                        <path d="M870,1167c-34-17-55-57-46-90c3-15,81-100,194-211l187-185l-565-1c-431,0-571-3-590-13c-55-28-64-94-18-137c21-20,33-20,597-20h575l-192-193C800,103,794,94,849,39c20-20,39-29,61-29c28,0,63,30,298,262c147,144,272,271,279,282c30,51,23,60-219,304C947,1180,926,1196,870,1167z"/>
+                      </g>
+                      </svg>
+                      <span class="btn-background"></span>
+                    </button>
                   </div>
-                  <ul class="modal--options">
-                    <li><a href="#0">Twitter</a></li>
-                    <li><a href="mailto:ouremail@gmail.com">Contact Us</a></li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-          </li>
-          <li class="l-section section">
-            <div class="hire">
-              <h2>What best fits your job title?</h2>
-              <!-- checkout formspree.io for easy form setup -->
-              <form class="work-request" 
-                action=”mailto:contact@sidewaysturtle.com” 
-                method=”POST”
+
+                  <!-- Would like to thank Riley for the turtle model -->
+                  <!-- https://rkuhlf-assets.itch.io/aquatic-animal-models -->
+                  <model-viewer
+                    src="https://cdn.glitch.global/ff996a1b-fade-4b92-9204-556d38ecd023/Turtle_Model.glb?v=1664519111621"
+                    ios-src="https://cdn.glitch.global/ff996a1b-fade-4b92-9204-556d38ecd023/Turtle_Model.usdz?v=1664519679394"
+                    alt="Imagine a 3D model of a cute turtle"
+                    shadow-intensity="5"
+                    camera-controls
+                    touch-action="pan-y"
+                    interaction-prompt="none"
+                    auto-rotate
+                    auto-rotate-delay="0"
+                    rotation-per-second="30deg"
+                    disable-tap
+                    disable-zoom
+                    orientation="-90deg -130deg 0"
+                  >
+                  </model-viewer>
                 
-              >
-                <div class="work-request--options">
-                  <span class="options-a">
-                    <input id="opt-1" type="checkbox" value="3D Modeler">
-                    <label for="opt-1">
-                      <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-                      viewBox="0 0 150 111" style="enable-background:new 0 0 150 111;" xml:space="preserve">
-                      <g transform="translate(0.000000,111.000000) scale(0.100000,-0.100000)">
-                        <path d="M950,705L555,310L360,505C253,612,160,700,155,700c-6,0-44-34-85-75l-75-75l278-278L550-5l475,475c261,261,475,480,475,485c0,13-132,145-145,145C1349,1100,1167,922,950,705z"/>
-                      </g>
-                      </svg>
-                      3D Modeler
-                    </label>
-                    <input id="opt-2" type="checkbox" value="Level Designer">
-                    <label for="opt-2">
-                      <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-                      viewBox="0 0 150 111" style="enable-background:new 0 0 150 111;" xml:space="preserve">
-                      <g transform="translate(0.000000,111.000000) scale(0.100000,-0.100000)">
-                        <path d="M950,705L555,310L360,505C253,612,160,700,155,700c-6,0-44-34-85-75l-75-75l278-278L550-5l475,475c261,261,475,480,475,485c0,13-132,145-145,145C1349,1100,1167,922,950,705z"/>
-                      </g>
-                      </svg>
-                      Level Designer
-                    </label>
-                    <input id="opt-3" type="checkbox" value="2D Artist">
-                    <label for="opt-3">
-                      <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-                      viewBox="0 0 150 111" style="enable-background:new 0 0 150 111;" xml:space="preserve">
-                      <g transform="translate(0.000000,111.000000) scale(0.100000,-0.100000)">
-                        <path d="M950,705L555,310L360,505C253,612,160,700,155,700c-6,0-44-34-85-75l-75-75l278-278L550-5l475,475c261,261,475,480,475,485c0,13-132,145-145,145C1349,1100,1167,922,950,705z"/>
-                      </g>
-                      </svg>
-                      2D Artist
-                    </label>
-                  </span>
-                  <span class="options-b">
-                    <input id="opt-4" type="checkbox" value="Game Developer">
-                    <label for="opt-4">
-                      <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-                      viewBox="0 0 150 111" style="enable-background:new 0 0 150 111;" xml:space="preserve">
-                      <g transform="translate(0.000000,111.000000) scale(0.100000,-0.100000)">
-                        <path d="M950,705L555,310L360,505C253,612,160,700,155,700c-6,0-44-34-85-75l-75-75l278-278L550-5l475,475c261,261,475,480,475,485c0,13-132,145-145,145C1349,1100,1167,922,950,705z"/>
-                      </g>
-                      </svg>
-                      Game Developer
-                    </label>
-                    <input id="opt-5" type="checkbox" value="Game Designer">
-                    <label for="opt-5">
-                      <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-                      viewBox="0 0 150 111" style="enable-background:new 0 0 150 111;" xml:space="preserve">
-                      <g transform="translate(0.000000,111.000000) scale(0.100000,-0.100000)">
-                        <path d="M950,705L555,310L360,505C253,612,160,700,155,700c-6,0-44-34-85-75l-75-75l278-278L550-5l475,475c261,261,475,480,475,485c0,13-132,145-145,145C1349,1100,1167,922,950,705z"/>
-                      </g>
-                      </svg>
-                      Game Designer
-                    </label>
-                    <input id="opt-6" type="checkbox" value="Writer">
-                    <label for="opt-6">
-                      <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-                      viewBox="0 0 150 111" style="enable-background:new 0 0 150 111;" xml:space="preserve">
-                      <g transform="translate(0.000000,111.000000) scale(0.100000,-0.100000)">
-                        <path d="M950,705L555,310L360,505C253,612,160,700,155,700c-6,0-44-34-85-75l-75-75l278-278L550-5l475,475c261,261,475,480,475,485c0,13-132,145-145,145C1349,1100,1167,922,950,705z"/>
-                      </g>
-                      </svg>
-                      Writer
-                    </label>
-                    <input id="opt-7" type="checkbox" value="Other">
-                    <label for="opt-7">
-                      <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-                      viewBox="0 0 150 111" style="enable-background:new 0 0 150 111;" xml:space="preserve">
-                      <g transform="translate(0.000000,111.000000) scale(0.100000,-0.100000)">
-                        <path d="M950,705L555,310L360,505C253,612,160,700,155,700c-6,0-44-34-85-75l-75-75l278-278L550-5l475,475c261,261,475,480,475,485c0,13-132,145-145,145C1349,1100,1167,922,950,705z"/>
-                      </g>
-                      </svg>
-                      Other
-                    </label>
-                  </span>
                 </div>
-                <div class="work-request--information">
-                  <div class="information-name">
-                    <input id="name" type="text" spellcheck="false">
-                    <label for="name">Name</label>
+                  <div class="intro--options">
+                    <a class="curr-tele">
+                      <h3>Hackpunk</h3>
+                      <p>A soviet era hacking game about puzzle solving and breaking into secure areas by exploting IOT devices.</p>
+                    </a>
+                    <a class="prev-tele">
+                      <h3>Cumulonimbus</h3>
+                      <p>A game about being a cloud on the path to helping those around it floating through life</p>
+                    </a>
+                    <a class="next-tele">
+                      <h3>Object Limbo</h3>
+                      <p>Story driven experience about morality and choosing to banish objects for their previous lives as objects interacting with humans.</p>
+                    </a>
                   </div>
-                  <div class="information-email">
-                    <input id="email" type="email" spellcheck="false">
-                    <label for="email">Email</label>
+              </div>
+            </li>
+
+            <li class="l-section section">
+              <div class="work">
+                <h2>Selected work</h2>
+                <div class="work--lockup">
+                  <ul class="slider">
+
+                    <li class="slider--item slider--item-left slider--perm-left">
+                      <a href="#0">
+                        <div class="slider--item-image">
+                          <img src="assets/img/work-victory.jpg" alt="Cumulonimbus">
+                        </div>
+                        <p class="slider--item-title">Cumulonimbus</p>
+                        <p class="slider--item-description">A game about being a cloud on the path to helping those around it floating through life.</p>
+                      </a>
+                    </li>
+
+                    <li class="slider--item slider--item-center slider--perm-center">
+                      <a href="#0">
+                        <div id="overlay"> </div>
+                        <div class="slider--item-image">
+                          <!-- <img src="assets/img/HackpunkLogo.png" alt="Hackpunk"> -->
+                          <iframe 
+                            width="560" height="315" 
+                            class="slider--item-image"
+                            src="https://www.youtube.com/embed/on_j-yx_9Jw?autoplay=1&rel=0&mute=1&showinfo=0&controls=0&loop=1&modestbranding=1&playlist=on_j-yx_9Jw" 
+                            frameborder="0" 
+                            allow="autoplay; encrypted-media; loop" 
+                            >
+                            <!-- allowfullscreen > -->
+                            
+                          </iframe>
+                        </div>
+                        <p class="slider--item-title">Hackpunk</p>
+                        <p class="slider--item-description">A soviet era hacking game about puzzle solving and breaking into secure areas by exploting IOT devices.</p>
+                      </a>
+                    </li>
+
+                    <li class="slider--item slider--item-right slider--perm-right">
+                      <a href="#0">
+                        <div class="slider--item-image">
+                          <img src="assets/img/work-alex-nowak.jpg" alt="Object Limbo">
+                        </div>
+                        <p class="slider--item-title">Object Limbo</p>
+                        <p class="slider--item-description">Story driven experience about morality and choosing to banish objects for their previous lives as objects interacting with humans.</p>
+                      </a>
+                    </li>
+
+                  </ul>
+
+                  <div class="slider--prev">
+                    <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                    viewBox="0 0 150 118" style="enable-background:new 0 0 150 118;" xml:space="preserve">
+                    <g transform="translate(0.000000,118.000000) scale(0.100000,-0.100000)">
+                      <path d="M561,1169C525,1155,10,640,3,612c-3-13,1-36,8-52c8-15,134-145,281-289C527,41,562,10,590,10c22,0,41,9,61,29
+                      c55,55,49,64-163,278L296,510h575c564,0,576,0,597,20c46,43,37,109-18,137c-19,10-159,13-590,13l-565,1l182,180
+                      c101,99,187,188,193,199c16,30,12,57-12,84C631,1174,595,1183,561,1169z"/>
+                    </g>
+                    </svg>
+                  </div>
+                  <div class="slider--next">
+                    <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 150 118" style="enable-background:new 0 0 150 118;" xml:space="preserve">
+                    <g transform="translate(0.000000,118.000000) scale(0.100000,-0.100000)">
+                      <path d="M870,1167c-34-17-55-57-46-90c3-15,81-100,194-211l187-185l-565-1c-431,0-571-3-590-13c-55-28-64-94-18-137c21-20,33-20,597-20h575l-192-193C800,103,794,94,849,39c20-20,39-29,61-29c28,0,63,30,298,262c147,144,272,271,279,282c30,51,23,60-219,304C947,1180,926,1196,870,1167z"/>
+                    </g>
+                    </svg>
                   </div>
                 </div>
-                <input type="submit" value="Send Request">
-              </form>
-            </div>
-          </li>
-        </ul>
+              </div>
+            </li>
+            <li class="l-section section">
+              <div class="about">
+                <div class="about--banner">
+                  <h2>We<br>believe in<br>creative<br>people</h2>
+                  <a class = "cta">Career
+                    <span>
+                      <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 150 118" style="enable-background:new 0 0 150 118;" xml:space="preserve">
+                      <g transform="translate(0.000000,118.000000) scale(0.100000,-0.100000)">
+                        <path d="M870,1167c-34-17-55-57-46-90c3-15,81-100,194-211l187-185l-565-1c-431,0-571-3-590-13c-55-28-64-94-18-137c21-20,33-20,597-20h575l-192-193C800,103,794,94,849,39c20-20,39-29,61-29c28,0,63,30,298,262c147,144,272,271,279,282c30,51,23,60-219,304C947,1180,926,1196,870,1167z"/>
+                      </g>
+                      </svg>
+                    </span>
+                  </a>
+                  <div id="screen">
+                    
+                  </div>
+                </div>
+                <div class="about--options">
+                  <a href="#0">
+                    <h3>Winners</h3>
+                  </a>
+                  <a href="#0">
+                    <h3>Philosophy</h3>
+                  </a>
+                  <a href="#0">
+                    <h3>History</h3>
+                  </a>
+                </div>
+              </div>
+            </li>
+            <li class="l-section section">
+              <div class="contact">
+                <div id="map"></div>
+                <div class="contact--lockup">
+                  <div class="modal">
+                    <div class="modal--information">
+                      <strong>Proudly Based in NYC</strong>
+                      <a href="mailto:contact@sidewaystutle.com">contact@sidewaysturtle.com</a>
+                    </div>
+                    <ul class="modal--options">
+                      <li><a href="#0">Twitter</a></li>
+                      <li><a href="mailto:ouremail@gmail.com">Contact Us</a></li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </li>
+            <li class="l-section section">
+              <div class="hire">
+                <h2>What best fits your job title?</h2>
+                <!-- checkout formspree.io for easy form setup -->
+                <form class="work-request" 
+                  action=”mailto:contact@sidewaysturtle.com” 
+                  method=”POST”
+                  
+                >
+                  <div class="work-request--options">
+                    <span class="options-a">
+                      <input id="opt-1" type="checkbox" value="3D Modeler">
+                      <label for="opt-1">
+                        <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                        viewBox="0 0 150 111" style="enable-background:new 0 0 150 111;" xml:space="preserve">
+                        <g transform="translate(0.000000,111.000000) scale(0.100000,-0.100000)">
+                          <path d="M950,705L555,310L360,505C253,612,160,700,155,700c-6,0-44-34-85-75l-75-75l278-278L550-5l475,475c261,261,475,480,475,485c0,13-132,145-145,145C1349,1100,1167,922,950,705z"/>
+                        </g>
+                        </svg>
+                        3D Modeler
+                      </label>
+                      <input id="opt-2" type="checkbox" value="Level Designer">
+                      <label for="opt-2">
+                        <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                        viewBox="0 0 150 111" style="enable-background:new 0 0 150 111;" xml:space="preserve">
+                        <g transform="translate(0.000000,111.000000) scale(0.100000,-0.100000)">
+                          <path d="M950,705L555,310L360,505C253,612,160,700,155,700c-6,0-44-34-85-75l-75-75l278-278L550-5l475,475c261,261,475,480,475,485c0,13-132,145-145,145C1349,1100,1167,922,950,705z"/>
+                        </g>
+                        </svg>
+                        Level Designer
+                      </label>
+                      <input id="opt-3" type="checkbox" value="2D Artist">
+                      <label for="opt-3">
+                        <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                        viewBox="0 0 150 111" style="enable-background:new 0 0 150 111;" xml:space="preserve">
+                        <g transform="translate(0.000000,111.000000) scale(0.100000,-0.100000)">
+                          <path d="M950,705L555,310L360,505C253,612,160,700,155,700c-6,0-44-34-85-75l-75-75l278-278L550-5l475,475c261,261,475,480,475,485c0,13-132,145-145,145C1349,1100,1167,922,950,705z"/>
+                        </g>
+                        </svg>
+                        2D Artist
+                      </label>
+                    </span>
+                    <span class="options-b">
+                      <input id="opt-4" type="checkbox" value="Game Developer">
+                      <label for="opt-4">
+                        <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                        viewBox="0 0 150 111" style="enable-background:new 0 0 150 111;" xml:space="preserve">
+                        <g transform="translate(0.000000,111.000000) scale(0.100000,-0.100000)">
+                          <path d="M950,705L555,310L360,505C253,612,160,700,155,700c-6,0-44-34-85-75l-75-75l278-278L550-5l475,475c261,261,475,480,475,485c0,13-132,145-145,145C1349,1100,1167,922,950,705z"/>
+                        </g>
+                        </svg>
+                        Game Developer
+                      </label>
+                      <input id="opt-5" type="checkbox" value="Game Designer">
+                      <label for="opt-5">
+                        <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                        viewBox="0 0 150 111" style="enable-background:new 0 0 150 111;" xml:space="preserve">
+                        <g transform="translate(0.000000,111.000000) scale(0.100000,-0.100000)">
+                          <path d="M950,705L555,310L360,505C253,612,160,700,155,700c-6,0-44-34-85-75l-75-75l278-278L550-5l475,475c261,261,475,480,475,485c0,13-132,145-145,145C1349,1100,1167,922,950,705z"/>
+                        </g>
+                        </svg>
+                        Game Designer
+                      </label>
+                      <input id="opt-6" type="checkbox" value="Writer">
+                      <label for="opt-6">
+                        <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                        viewBox="0 0 150 111" style="enable-background:new 0 0 150 111;" xml:space="preserve">
+                        <g transform="translate(0.000000,111.000000) scale(0.100000,-0.100000)">
+                          <path d="M950,705L555,310L360,505C253,612,160,700,155,700c-6,0-44-34-85-75l-75-75l278-278L550-5l475,475c261,261,475,480,475,485c0,13-132,145-145,145C1349,1100,1167,922,950,705z"/>
+                        </g>
+                        </svg>
+                        Writer
+                      </label>
+                      <input id="opt-7" type="checkbox" value="Other">
+                      <label for="opt-7">
+                        <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                        viewBox="0 0 150 111" style="enable-background:new 0 0 150 111;" xml:space="preserve">
+                        <g transform="translate(0.000000,111.000000) scale(0.100000,-0.100000)">
+                          <path d="M950,705L555,310L360,505C253,612,160,700,155,700c-6,0-44-34-85-75l-75-75l278-278L550-5l475,475c261,261,475,480,475,485c0,13-132,145-145,145C1349,1100,1167,922,950,705z"/>
+                        </g>
+                        </svg>
+                        Other
+                      </label>
+                    </span>
+                  </div>
+                  <div class="work-request--information">
+                    <div class="information-name">
+                      <input id="name" type="text" spellcheck="false">
+                      <label for="name">Name</label>
+                    </div>
+                    <div class="information-email">
+                      <input id="email" type="email" spellcheck="false">
+                      <label for="email">Email</label>
+                    </div>
+                  </div>
+                  <input type="submit" value="Send Request">
+                </form>
+              </div>
+            </li>
+          </ul>
+        </div>
       </div>
     </div>
+    <ul class="outer-nav">
+      <li class="is-active">Home</li>
+      <li>Experiences</li>
+      <li>About</li>
+      <li>Contact</li>
+      <li>Work with us</li>
+    </ul>
   </div>
-  <ul class="outer-nav">
-    <li class="is-active">Home</li>
-    <li>Experiences</li>
-    <li>About</li>
-    <li>Contact</li>
-    <li>Work with us</li>
-  </ul>
-</div>
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
-<script>window.jQuery || document.write('<script src="assets/js/vendor/jquery-2.2.4.min.js"><\/script>')</script>
-<script src="assets/js/functions-min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+  <script>window.jQuery || document.write('<script src="assets/js/vendor/jquery-2.2.4.min.js"><\/script>')</script>
+  <script src="assets/js/functions.js"></script>
 </body>
 </html>
