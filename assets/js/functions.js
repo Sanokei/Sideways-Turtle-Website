@@ -416,50 +416,32 @@ $( document ).ready(function() {
         $center.removeClass('slider--item-center');
         $right.removeClass('slider--item-right');
       }
+      
       function addClasses(a,b,c)
       {
+        removeClasses();
         $left_perm.addClass('slider--item-' + a);
         $center_perm.addClass('slider--item-' + b);
         $right_perm.addClass('slider--item-' + c);
       }
+
       $('.slider').animate({ opacity : 0 }, 400);
 
       setTimeout(function(){
-        if ($this.hasClass('slider--next')) {
+        if ($this.hasClass('slider--next'))
           if($center_perm.hasClass('slider--item-left'))
-          {
-            removeClasses();
             addClasses('center','right','left');
-          }
           else if($center_perm.hasClass('slider--item-center'))
-          {
-            removeClasses();
             addClasses('right','left','center');
-          }
           else
-          {
-            removeClasses();
             addClasses('left','center','right');
-          }
-        }
-        else {
+        else
           if($center_perm.hasClass('slider--item-left'))
-          {
-            removeClasses();
             addClasses('left','center','right');
-          }
           else if($center_perm.hasClass('slider--item-center'))
-          {
-            removeClasses();
             addClasses('center','right','left');
-          }
           else
-          {
-            removeClasses();
             addClasses('right','left','center');
-          }
-        }
-
       }, 400);
 
       $('.slider').animate({ opacity : 1 }, 400);
