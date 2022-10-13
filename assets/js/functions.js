@@ -9,7 +9,7 @@ document.getElementById("overlay").addEventListener("contextmenu", function(even
 //           $center = $('.slider--item-center'),
 //           $right = $('.slider--item-right');
 
-$( document ).ready(function() {
+// $( document ).ready(function() {
   mapboxgl.accessToken = 'pk.eyJ1Ijoic2Fub2tlaSIsImEiOiJjbDh3M2RsNzkwanZqM29vNDduNW52amg5In0.SSwVPJSPg5z-BNhYIufsJQ';
   const map = new mapboxgl.Map({
     container: 'map',
@@ -474,4 +474,4 @@ $( document ).ready(function() {
   workSlider();
   transitionLabels();
 
-});
+// });
