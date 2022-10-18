@@ -1,9 +1,9 @@
 // @codekit-prepend "/vendor/hammer-2.0.8.js";
-
 document.getElementById("overlay").addEventListener("contextmenu", function(event){
   event.preventDefault();
   event.stopPropagation();
 });
+
 // https://stackoverflow.com/questions/5786851/define-a-global-variable-in-a-javascript-function
 // var     left = $('.slider--item-left'),
 //           $center = $('.slider--item-center'),
@@ -427,22 +427,22 @@ document.getElementById("overlay").addEventListener("contextmenu", function(even
 
       $('.slider').animate({ opacity : 0 }, 400);
 
-      setTimeout(function(){
-        if ($this.hasClass('slider--next'))
-          if($center_perm.hasClass('slider--item-left'))
-            addClasses('center','right','left');
-          else if($center_perm.hasClass('slider--item-center'))
-            addClasses('right','left','center');
+        setTimeout(function(){
+          if ($this.hasClass('slider--next'))
+            if($center_perm.hasClass('slider--item-left'))
+              addClasses('center','right','left');
+            else if($center_perm.hasClass('slider--item-center'))
+              addClasses('right','left','center');
+            else
+              addClasses('left','center','right');
           else
-            addClasses('left','center','right');
-        else
-          if($center_perm.hasClass('slider--item-left'))
-            addClasses('left','center','right');
-          else if($center_perm.hasClass('slider--item-center'))
-            addClasses('center','right','left');
-          else
-            addClasses('right','left','center');
-      }, 400);
+            if($center_perm.hasClass('slider--item-left'))
+              addClasses('left','center','right');
+            else if($center_perm.hasClass('slider--item-center'))
+              addClasses('center','right','left');
+            else
+              addClasses('right','left','center');
+        }, 400);
 
       $('.slider').animate({ opacity : 1 }, 400);
 
