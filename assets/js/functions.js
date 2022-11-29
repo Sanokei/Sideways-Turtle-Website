@@ -8,6 +8,24 @@ document.getElementById("overlay").addEventListener("contextmenu", function(even
 // var     left = $('.slider--item-left'),
 //           $center = $('.slider--item-center'),
 //           $right = $('.slider--item-right');
+var locations = 
+[
+    {
+      name: "Dumbo",
+      map: [-73.990038, 40.704488],
+      turtle: [-73.99204, 40.706280]
+    },
+    {
+      name: "NYU",
+      map: [-73.997457, 40.730823],
+      turtle: [-73.997457, 40.730823]
+    }
+]
+
+Array.prototype.random = function () {
+  return this[Math.floor((Math.random()*this.length))];
+}
+var randomDic = locations.random();
 
 // $( document ).ready(function() {
   mapboxgl.accessToken = 'pk.eyJ1Ijoic2Fub2tlaSIsImEiOiJjbDh3M2RsNzkwanZqM29vNDduNW52amg5In0.SSwVPJSPg5z-BNhYIufsJQ';
@@ -15,7 +33,7 @@ document.getElementById("overlay").addEventListener("contextmenu", function(even
     container: 'map',
     // Choose from Mapbox's core styles, or make your own style with Mapbox Studio
     style: 'mapbox://styles/mapbox/dark-v10',
-    center: [-73.997457, 40.730823],
+    center: randomDic.map, 
     zoom: 16,
     interactive: false,
     pitch: 45
@@ -29,7 +47,7 @@ document.getElementById("overlay").addEventListener("contextmenu", function(even
     requestAnimationFrame(rotateCamera);
   }
     // parameters to ensure the model is georeferenced correctly on the map
-  const modelOrigin = [-73.997457, 40.730823];
+  const modelOrigin = randomDic.turtle;
   const modelAltitude = 0;
   const modelRotate = [Math.PI / 2, 0, 0];
   
@@ -151,7 +169,7 @@ document.getElementById("overlay").addEventListener("contextmenu", function(even
     'source-layer': 'building',
     'filter': ['==', 'extrude', 'true'],
     'type': 'fill-extrusion',
-    'minzoom': 15,
+    'minzoom': 16,
     'paint': {
     'fill-extrusion-color': '#aaa',
       
