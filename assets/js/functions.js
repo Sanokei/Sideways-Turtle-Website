@@ -8,8 +8,8 @@ console.log
 (
   "            ____\n"+
   "  ________ |   .|\n" +
-  " /        \\|____| if a turtle loses its shell is it naked or homeless\n" +
-  "<|_________/\n" +
+  " /        \\|____| if a turtle loses its shell\n" +
+  "<|_________/        is it naked or homeless\n" +
   " |_|_| |_|_|\n"
 )
 
