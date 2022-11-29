@@ -4,6 +4,15 @@ document.getElementById("overlay").addEventListener("contextmenu", function(even
   event.stopPropagation();
 });
 
+console.log
+(
+  "            ____\n"+
+  "  ________ |   .|\n" +
+  " /        \\|____| if a turtle loses its shell is it naked or homeless\n" +
+  "<|_________/\n" +
+  " |_|_| |_|_|\n"
+)
+
 // https://stackoverflow.com/questions/5786851/define-a-global-variable-in-a-javascript-function
 // var     left = $('.slider--item-left'),
 //           $center = $('.slider--item-center'),
