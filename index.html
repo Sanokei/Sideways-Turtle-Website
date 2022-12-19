@@ -263,28 +263,28 @@
             </li>
             <li class="l-section section">
               <div class="form--container">
-                <form class="gform pure-form pure-form-stacked" method="POST" data-email="jobs@sidewaysturtle.com" action="https://script.google.com/macros/s/AKfycbzjBGMKk2vxVEIu6lPAfuSYxYNWiyD1qSh5d65tj74A7jKG_7Z-LXVOlT5oXtGQnckaAA/exec">
-                  <fieldset class="pure-group">
+                <form class="gform pure-form pure-form-stacked" method="POST" data-email="jobs@sidewaysturtle.com" action="https://script.google.com/macros/s/AKfycbz-iEo1aQCjJThg5N_fBMvW1dMuBxQpPFqWsClv3GvdwXS_0kxHEyuxQneu4eR_MVsw/exec">
+                  <fieldset class="pure-group form-elements">
                     <label for="text">Name:</label>
                     <input name="name" placeholder="What your Mom calls you" required value=""/>
                   </fieldset>
                   <!--email-->
-                  <fieldset class="pure-group">
+                  <fieldset class="pure-group form-elements">
                     <label for="email">Email:</label>
                     <input name="email" type="email" placeholder="your.name@email.com" required value=""/>
                   </fieldset>
                   <!--color-->
-                  <fieldset class="pure-group">
+                  <fieldset class="pure-group form-elements">
                     <label for="color">Favourite Color: </label>
                     <input id="color" type="color" name="color"/>
                   </fieldset>
                   <!--text-area-->
-                  <fieldset class="pure-group">
+                  <fieldset class="pure-group form-elements">
                     <label for="text-area">About yourself:</label>
                     <textarea name="about" rows="6" placeholder="Tell us what's on your mind..."></textarea>
                   </fieldset>
 
-                  <fieldset class="pure-group">
+                  <fieldset class="pure-group form-elements">
                     <label for="menu">What Describes You best?</label>
                     <select name="job">
                       <optgroup label="Game Developer/Designer">
@@ -314,20 +314,20 @@
                     </select>
                   </fieldset>
                   <!--url-->
-                  <fieldset class="pure-group">
+                  <fieldset class="pure-group form-elements">
                     <label for="url">Portfolio / Resume</label>
                     <input type="url" name="portfolio"/>
                   </fieldset>
                   
                   <!-- Recapcha -->
                   <div
-                    class="g-recaptcha"
+                    class="g-recaptcha form-elements"
                     data-sitekey="6Ldes40jAAAAANvB4-wUYE0pNfAEaqQ1PCRbKgx-"
                     data-callback="callback"
                   ></div>
                   <br/>
                   <!-- Send -->
-                  <button class="button-success pure-button button-xlarge" id="submit-button" type="submit" disabled>
+                  <button class="button-success pure-button button-xlarge form-elements" id="submit-button" type="submit" disabled>
                     <i class="fa fa-paper-plane"></i>&nbsp;Send
                   </button>
 
