@@ -187,6 +187,7 @@ select{
         position: relative;
         margin: 0 auto;
         top: 5%;
+        left: 0;
         width: 350px;
         z-index: 2; }
       .card__thankyou {
