@@ -2,13 +2,13 @@
 <html lang="en"> 
 <head>
   <title>Sideways Turtle Studios</title>
+  <meta name="color-scheme" content="dark">
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="description" content="Offical Website for Sideways Turtle an indie game studio making entertaining experiences for all">
   <meta name="keywords" content="sidewaysturtle, sideways turtle, sideways turtles studio, sideways turtle game studio, turtle studio, game studio, indie game, hackpunk">
   <meta name="author" content="Original: Bucky Maler | Fork: SanoKei">
-  <link rel="stylesheet" href="assets/css/main.css">
   <link href="https://fonts.googleapis.com/css?family=Playfair+Display:700|Raleway:500.700">
   <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no">
   <link href="https://api.mapbox.com/mapbox-gl-js/v2.10.0/mapbox-gl.css" rel="stylesheet">
@@ -16,6 +16,10 @@
   <script src="https://unpkg.com/three@0.126.0/build/three.min.js"></script>
   <script src="https://unpkg.com/three@0.126.0/examples/js/loaders/GLTFLoader.js"></script>
   <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
+  <script src="https://www.google.com/recaptcha/api.js"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/purecss@3.0.0/build/pure-min.css" integrity="sha384-X38yfunGUhNzHpBaEBsWLO+A0HDYOQi8ufWDkZ0k9e0eXz/tH3II7uKZ9msv++Ls" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="assets/css/main.css">
 </head>
 <body>
 
@@ -181,7 +185,7 @@
             <li class="l-section section">
               <!-- Source: https://dribbble.com/shots/3186204-Thank-you -->
               <div class="wrapperCARD">
-                <div class="card">
+                <div class="card__custom">
                   <div class="card__year">
                     <!-- I really hope people dont see this as disingeneous corporate speak :c -->
                     Starting in the peak of 2020.<br />
@@ -252,109 +256,92 @@
                     </div>
                     <ul class="modal--options">
                       <li><a href="#0">Twitter</a></li>
-                      <!-- <li><a href="mailto:ouremail@gmail.com">Contact Us</a></li> -->
                     </ul>
                   </div>
                 </div>
               </div>
             </li>
             <li class="l-section section">
-              <div class="hire">
-                <h2>What best fits your job title?</h2>
-                <!-- checkout formspree.io for easy form setup -->
-                <form class="work-request" 
-                  action=”mailto:contact@sidewaysturtle.com” 
-                  method=”POST”
+              <div class="form--container">
+                <form class="gform pure-form pure-form-stacked" method="POST" data-email="jobs@sidewaysturtle.com" action="https://script.google.com/macros/s/AKfycbzjBGMKk2vxVEIu6lPAfuSYxYNWiyD1qSh5d65tj74A7jKG_7Z-LXVOlT5oXtGQnckaAA/exec">
+                  <fieldset class="pure-group">
+                    <label for="text">Name:</label>
+                    <input name="name" placeholder="What your Mom calls you" required value=""/>
+                  </fieldset>
+                  <!--email-->
+                  <fieldset class="pure-group">
+                    <label for="email">Email:</label>
+                    <input name="email" type="email" placeholder="your.name@email.com" required value=""/>
+                  </fieldset>
+                  <!--color-->
+                  <fieldset class="pure-group">
+                    <label for="color">Favourite Color: </label>
+                    <input id="color" type="color" name="color"/>
+                  </fieldset>
+                  <!--text-area-->
+                  <fieldset class="pure-group">
+                    <label for="text-area">About yourself:</label>
+                    <textarea name="about" rows="6" placeholder="Tell us what's on your mind..."></textarea>
+                  </fieldset>
+
+                  <fieldset class="pure-group">
+                    <label for="menu">What Describes You best?</label>
+                    <select name="job">
+                      <optgroup label="Game Developer/Designer">
+                        <option selected>Unity Programmer</option>
+                        <option>Engine Programmer</option>
+                        <option>Content Designer</option>
+                        <option>Systems Designer</option>
+                        <option>Level Designer</option>
+                      </optgroup>
+                      <optgroup label="Artist">
+                        <option>3D low-poly Modeler</option>
+                        <option>2D Character Artist</option>
+                        <option>2D Concept Artist</option>
+                        <option>Pixel Artist</option>
+                        <option>Texture Artist</option>
+                        <option>User Interface Designer</option>
+                      </optgroup>
+                      <optgroup label="Writer">
+                        <option>Lore and world building</option>
+                        <option>Overarching narrative</option>
+                      </optgroup>
+                      <optgroup label="Sound Designer">
+                        <option>Foley/sound effects</option>
+                        <option>General Composer</option>
+                        <option>Incidental Musician</option>
+                      </optgroup>
+                    </select>
+                  </fieldset>
+                  <!--url-->
+                  <fieldset class="pure-group">
+                    <label for="url">Portfolio / Resume</label>
+                    <input type="url" name="portfolio"/>
+                  </fieldset>
                   
-                >
-                  <div class="work-request--options">
-                    <span class="options-a">
-                      <input id="opt-1" type="checkbox" value="3D Modeler">
-                      <label for="opt-1">
-                        <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-                        viewBox="0 0 150 111" style="enable-background:new 0 0 150 111;" xml:space="preserve">
-                        <g transform="translate(0.000000,111.000000) scale(0.100000,-0.100000)">
-                          <path d="M950,705L555,310L360,505C253,612,160,700,155,700c-6,0-44-34-85-75l-75-75l278-278L550-5l475,475c261,261,475,480,475,485c0,13-132,145-145,145C1349,1100,1167,922,950,705z"/>
-                        </g>
-                        </svg>
-                        3D Modeler
-                      </label>
-                      <input id="opt-2" type="checkbox" value="Level Designer">
-                      <label for="opt-2">
-                        <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-                        viewBox="0 0 150 111" style="enable-background:new 0 0 150 111;" xml:space="preserve">
-                        <g transform="translate(0.000000,111.000000) scale(0.100000,-0.100000)">
-                          <path d="M950,705L555,310L360,505C253,612,160,700,155,700c-6,0-44-34-85-75l-75-75l278-278L550-5l475,475c261,261,475,480,475,485c0,13-132,145-145,145C1349,1100,1167,922,950,705z"/>
-                        </g>
-                        </svg>
-                        Level Designer
-                      </label>
-                      <input id="opt-3" type="checkbox" value="2D Artist">
-                      <label for="opt-3">
-                        <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-                        viewBox="0 0 150 111" style="enable-background:new 0 0 150 111;" xml:space="preserve">
-                        <g transform="translate(0.000000,111.000000) scale(0.100000,-0.100000)">
-                          <path d="M950,705L555,310L360,505C253,612,160,700,155,700c-6,0-44-34-85-75l-75-75l278-278L550-5l475,475c261,261,475,480,475,485c0,13-132,145-145,145C1349,1100,1167,922,950,705z"/>
-                        </g>
-                        </svg>
-                        2D Artist
-                      </label>
-                    </span>
-                    <span class="options-b">
-                      <input id="opt-4" type="checkbox" value="Game Developer">
-                      <label for="opt-4">
-                        <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-                        viewBox="0 0 150 111" style="enable-background:new 0 0 150 111;" xml:space="preserve">
-                        <g transform="translate(0.000000,111.000000) scale(0.100000,-0.100000)">
-                          <path d="M950,705L555,310L360,505C253,612,160,700,155,700c-6,0-44-34-85-75l-75-75l278-278L550-5l475,475c261,261,475,480,475,485c0,13-132,145-145,145C1349,1100,1167,922,950,705z"/>
-                        </g>
-                        </svg>
-                        Game Developer
-                      </label>
-                      <input id="opt-5" type="checkbox" value="Game Designer">
-                      <label for="opt-5">
-                        <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-                        viewBox="0 0 150 111" style="enable-background:new 0 0 150 111;" xml:space="preserve">
-                        <g transform="translate(0.000000,111.000000) scale(0.100000,-0.100000)">
-                          <path d="M950,705L555,310L360,505C253,612,160,700,155,700c-6,0-44-34-85-75l-75-75l278-278L550-5l475,475c261,261,475,480,475,485c0,13-132,145-145,145C1349,1100,1167,922,950,705z"/>
-                        </g>
-                        </svg>
-                        Game Designer
-                      </label>
-                      <input id="opt-6" type="checkbox" value="Writer">
-                      <label for="opt-6">
-                        <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-                        viewBox="0 0 150 111" style="enable-background:new 0 0 150 111;" xml:space="preserve">
-                        <g transform="translate(0.000000,111.000000) scale(0.100000,-0.100000)">
-                          <path d="M950,705L555,310L360,505C253,612,160,700,155,700c-6,0-44-34-85-75l-75-75l278-278L550-5l475,475c261,261,475,480,475,485c0,13-132,145-145,145C1349,1100,1167,922,950,705z"/>
-                        </g>
-                        </svg>
-                        Writer
-                      </label>
-                      <input id="opt-7" type="checkbox" value="Other">
-                      <label for="opt-7">
-                        <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-                        viewBox="0 0 150 111" style="enable-background:new 0 0 150 111;" xml:space="preserve">
-                        <g transform="translate(0.000000,111.000000) scale(0.100000,-0.100000)">
-                          <path d="M950,705L555,310L360,505C253,612,160,700,155,700c-6,0-44-34-85-75l-75-75l278-278L550-5l475,475c261,261,475,480,475,485c0,13-132,145-145,145C1349,1100,1167,922,950,705z"/>
-                        </g>
-                        </svg>
-                        Other
-                      </label>
-                    </span>
+                  <!-- Recapcha -->
+                  <div
+                    class="g-recaptcha"
+                    data-sitekey="6Ldes40jAAAAANvB4-wUYE0pNfAEaqQ1PCRbKgx-"
+                    data-callback="callback"
+                  ></div>
+                  <br/>
+                  <!-- Send -->
+                  <button class="button-success pure-button button-xlarge" id="submit-button" type="submit" disabled>
+                    <i class="fa fa-paper-plane"></i>&nbsp;Send
+                  </button>
+
+                  <div class="thankyou_message" style="display:none;">
+                    <h2>Thank You for applying!<br/> 
+                      We will get back to you soon!</h2>
                   </div>
-                  <div class="work-request--information">
-                    <div class="information-name">
-                      <input id="name" type="text" spellcheck="false">
-                      <label for="name">Name</label>
-                    </div>
-                    <div class="information-email">
-                      <input id="email" type="email" spellcheck="false">
-                      <label for="email">Email</label>
-                    </div>
-                  </div>
-                  <input type="submit" value="Send Request">
                 </form>
+                <script type="text/javascript">
+                  function callback() {
+                    const submitButton = document.getElementById("submit-button");
+                    submitButton.removeAttribute("disabled");
+                  }
+                </script>
               </div>
             </li>
           </ul>
@@ -373,6 +360,7 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
   <script>window.jQuery || document.write('<script src="assets/js/vendor/jquery-2.2.4.min.js"><\/script>')</script>
   <script src="assets/js/functions.js"></script>
+  <script data-cfasync="false" src="assets/js/form-submission-handler.js"></script>
 
 </body>
 </html>

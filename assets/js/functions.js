@@ -16,7 +16,7 @@ console.log
 const $circle = document.querySelector('.card__circle');
 const $smallCircle = document.querySelector('.card__smallCircle');
 const $year = document.querySelector('.card__year');
-const $card = document.querySelector('.card');
+const $card = document.querySelector('.card__custom');
 const $cardOrangeShine = document.querySelector('.card__orangeShine');
 const $cardThankYou = document.querySelector('.card__thankyou');
 const $cardComet = document.querySelector('.card__cometOuter');
@@ -365,6 +365,8 @@ var randomDic = locations.random();
 
   });
   
+  $('work-form--option').append('<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 150 111" style="enable-background:new 0 0 150 111;" xml:space="preserve"><g transform="translate(0.000000,111.000000) scale(0.100000,-0.100000)"><path d="M950,705L555,310L360,505C253,612,160,700,155,700c-6,0-44-34-85-75l-75-75l278-278L550-5l475,475c261,261,475,480,475,485c0,13-132,145-145,145C1349,1100,1167,922,950,705z"/></g></svg>');
+
   if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
     $('.youtube--player').append('<img src="assets/img/HackpunkLogo.png" alt="Hackpunk">')
     var targetElement = document.getElementById('viewport'),
