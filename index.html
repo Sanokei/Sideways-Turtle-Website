@@ -58,7 +58,7 @@
           <ul class="l-main-content main-content">
             <li class="l-section section section--is-active">
               <div class="intro">
-                <div class="intro--banner">
+                <div class="intro--banner wrapper">
 
                   <div style="float:left">
                     <h1>We make<br>lasting<br>experiences</h1>
@@ -130,15 +130,16 @@
                         <div id="overlay"> </div>
                         <div class="slider--item-image">
                           <!-- <img src="assets/img/HackpunkLogo.png" alt="Hackpunk"> -->
-                          <iframe 
+                          <!-- <iframe 
                             width="560" height="315" 
                             class="slider--item-image"
-                            src="https://www.youtube.com/embed/on_j-yx_9Jw?autoplay=1&autohide=1&theme=dark&rel=0&mute=1&showinfo=0&controls=0&keyboard=1&loop=1&modestbranding=1&fs=0&playlist=on_j-yx_9Jw" 
+                            src="https://www.youtube.com/embed/on_j-yx_9Jw?&playsinline=1&mute=1&autoplay=1&autohide=1&theme=dark&rel=0&showinfo=0&controls=0&keyboard=1&loop=1&modestbranding=1&fs=0&playlist=on_j-yx_9Jw" 
                             frameborder="0" 
                             allow="autoplay; encrypted-media; loop" 
                             >
-                            <!-- allowfullscreen > -->
-                          </iframe>
+                          </iframe> -->
+                          <div class="youtube--player">
+                          </div>
                         </div>
                         <p class="slider--item-title">Hackpunk</p>
                         <p class="slider--item-description">A soviet era hacking game about puzzle solving and breaking into secure areas by exploting IOT devices.</p>
@@ -179,7 +180,7 @@
             </li>
             <li class="l-section section">
               <!-- Source: https://dribbble.com/shots/3186204-Thank-you -->
-              <div class="wrapper">
+              <div class="wrapperCARD">
                 <div class="card">
                   <div class="card__year">
                     <!-- I really hope people dont see this as disingeneous corporate speak :c -->
@@ -368,10 +369,9 @@
       <li>Work with us</li>
     </ul>
   </div>
-
+  <script src="https://hammerjs.github.io/dist/hammer.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
   <script>window.jQuery || document.write('<script src="assets/js/vendor/jquery-2.2.4.min.js"><\/script>')</script>
-
   <script src="assets/js/functions.js"></script>
 
 </body>

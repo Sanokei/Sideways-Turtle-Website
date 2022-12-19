@@ -1,4 +1,4 @@
-// @codekit-prepend "/vendor/hammer-2.0.8.js";
+// @codekit-prepend "assets/js/libs/hammer.min.js";
 document.getElementById("overlay").addEventListener("contextmenu", function(event){
   event.preventDefault();
   event.stopPropagation();
@@ -20,37 +20,39 @@ const $card = document.querySelector('.card');
 const $cardOrangeShine = document.querySelector('.card__orangeShine');
 const $cardThankYou = document.querySelector('.card__thankyou');
 const $cardComet = document.querySelector('.card__cometOuter');
-const generateTranslate = (el, e, value) => {
-  el.style.transform = `translate(${e.clientX * value}px, ${e.clientY * value}px)`;
-};
-// http://stackoverflow.com/a/1480137
-const cumulativeOffset = element => {
-  var top = 0,
-    left = 0;
-  do {
-    top += element.offsetTop || 0;
-    left += element.offsetLeft || 0;
-    element = element.offsetParent;
-  } while (element);
-  return {
-    top: top,
-    left: left
-  };
-};
-document.onmousemove = event => {
-  const e = event || window.event;
-  const x = (e.pageX - cumulativeOffset($card).left - 350 / 2) * -1 / 100;
-  const y = (e.pageY - cumulativeOffset($card).top - 350 / 2) * -1 / 100;
-  const matrix = [[1, 0, 0, -x * 0.00005], [0, 1, 0, -y * 0.00005], [0, 0, 1, 1], [0, 0, 0, 1]];
-  generateTranslate($smallCircle, e, 0.03);
-  generateTranslate($cardThankYou, e, 0.03);
-  generateTranslate($cardOrangeShine, e, 0.09);
-  generateTranslate($circle, e, 0.05);
-  generateTranslate($year, e, 0.03);
-  generateTranslate($cardComet, e, 0.05);
-  $card.style.transform = `matrix3d(${matrix.toString()})`;
-};
 
+if (!/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+  const generateTranslate = (el, e, value) => {
+    el.style.transform = `translate(${e.clientX * value}px, ${e.clientY * value}px)`;
+  };
+  // http://stackoverflow.com/a/1480137
+  const cumulativeOffset = element => {
+    var top = 0,
+      left = 0;
+    do {
+      top += element.offsetTop || 0;
+      left += element.offsetLeft || 0;
+      element = element.offsetParent;
+    } while (element);
+    return {
+      top: top,
+      left: left
+    };
+  };
+  document.onmousemove = event => {
+    const e = event || window.event;
+    const x = (e.pageX - cumulativeOffset($card).left - 350 / 2) * -1 / 100;
+    const y = (e.pageY - cumulativeOffset($card).top - 350 / 2) * -1 / 100;
+    const matrix = [[1, 0, 0, -x * 0.00005], [0, 1, 0, -y * 0.00005], [0, 0, 1, 1], [0, 0, 0, 1]];
+    generateTranslate($smallCircle, e, 0.03);
+    generateTranslate($cardThankYou, e, 0.03);
+    generateTranslate($cardOrangeShine, e, 0.09);
+    generateTranslate($circle, e, 0.05);
+    generateTranslate($year, e, 0.03);
+    generateTranslate($cardComet, e, 0.05);
+    $card.style.transform = `matrix3d(${matrix.toString()})`;
+  };
+}
 
 // https://stackoverflow.com/questions/5786851/define-a-global-variable-in-a-javascript-function
 // var     left = $('.slider--item-left'),
@@ -362,6 +364,22 @@ var randomDic = locations.random();
     }
 
   });
+  
+  if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+    $('.youtube--player').append('<img src="assets/img/HackpunkLogo.png" alt="Hackpunk">')
+    var targetElement = document.getElementById('viewport'),
+        mc = new Hammer(targetElement);
+    mc.get('swipe').set({ direction: Hammer.DIRECTION_VERTICAL });
+    mc.on('swipeup swipedown', function(e) {
+
+      updateHelper(e);
+
+    });
+  }
+  else
+  {
+    $('.youtube--player').append('<iframe width="560" height="315" class="slider--item-image" src="https://www.youtube.com/embed/on_j-yx_9Jw?&playsinline=1&mute=1&autoplay=1&autohide=1&theme=dark&rel=0&showinfo=0&controls=0&keyboard=1&loop=1&modestbranding=1&fs=0&playlist=on_j-yx_9Jw" frameborder="0" allow="autoplay; encrypted-media; loop" ></iframe>')
+  }
 
   // determine scroll, swipe, and arrow key direction
   function updateHelper(param) {
